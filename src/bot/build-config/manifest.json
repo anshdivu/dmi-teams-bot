@@ -1,0 +1,77 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.5/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.5",
+  "version": "1.0.0",
+  "id": "9237e712-f559-4108-88a1-d2e921287b4a",
+  "packageName": "com.dminc.experiencebot",
+  "developer": {
+    "name": "ExperienceBot",
+    "websiteUrl": "https://www.dminc.com",
+    "privacyUrl": "https://www.dminc.com",
+    "termsOfUseUrl": "https://www.dminc.com"
+  },
+  "icons": {
+    "outline": "experience-logo-20x20.png",
+    "color": "experience-logo-96x96.png"
+  },
+  "name": {
+    "short": "Experience Bot",
+    "full": "Experience Bot"
+  },
+  "description": {
+    "short": "Hello World App for Microsoft Teams",
+    "full": "This sample app provides a very simple app for Microsoft Teams. You can extend this to add more content and capabilities."
+  },
+  "accentColor": "#363C41",
+  "configurableTabs": [
+    {
+      "configurationUrl": "https://9189e754.ngrok.io/configure",
+      "canUpdateConfiguration": true,
+      "scopes": ["team"]
+    }
+  ],
+  "staticTabs": [
+    {
+      "entityId": "com.dminc.experiencebot.resumetab",
+      "name": "Hello Tab",
+      "contentUrl": "https://9189e754.ngrok.io/hello",
+      "websiteUrl": "https://9189e754.ngrok.io/hello",
+      "scopes": ["personal"]
+    }
+  ],
+  "bots": [
+    {
+      "botId": "1414a7de-c168-46a6-8ab5-867b0383e87c",
+      "scopes": ["personal", "team", "groupchat"],
+      "supportsFiles": false,
+      "isNotificationOnly": false
+    }
+  ],
+  "composeExtensions": [
+    {
+      "botId": "1414a7de-c168-46a6-8ab5-867b0383e87c",
+      "canUpdateConfiguration": true,
+      "commands": [
+        {
+          "id": "getRandomText",
+          "type": "query",
+          "title": "Get some random text for fun",
+          "description": "Gets dome random text ad images",
+          "initialRun": true,
+          "fetchTask": false,
+          "context": ["commandBox", "compose", "message"],
+          "parameters": [
+            {
+              "name": "cardTitle",
+              "title": "Card title",
+              "description": "Card title to use",
+              "inputType": "text"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "permissions": ["identity", "messageTeamMembers"],
+  "validDomains": ["9189e754.ngrok.io"]
+}

@@ -8,10 +8,4 @@ describe('express app', () => {
 
     expect(response.status).toBe(200);
   });
-
-  it('has a `/users` route', async () => {
-    const response = await request(app).get('/users');
-
-    expect(response.status).toBe(200);
-  });
 });
