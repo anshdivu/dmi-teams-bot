@@ -1,23 +1,23 @@
-import axios from 'axios';
-import { CardAction, CardImage, Session, ThumbnailCard } from 'botbuilder';
-import Environment from '../config/environment';
+import axios from "axios";
+import { CardAction, CardImage, Session, ThumbnailCard } from "botbuilder";
+import Environment from "../config/environment";
 
 export async function downloadResume(
   id: string,
-  env: Environment['experience']
+  env: Environment["experience"]
 ) {
   const path = `resume/${id}/download/1`;
-  return await connector(env).get(path, { responseType: 'stream' });
+  return await connector(env).get(path, { responseType: "stream" });
 }
 
 export async function searchBySkill(
   session: Session,
   text: string,
-  env: Environment['experience']
+  env: Environment["experience"]
 ) {
   const { data } = await searchApi(text, env);
   if (!(data && data.People && data.People.length > 0)) {
-    return '> No User Found';
+    return "> No User Found";
   }
 
   let msg = [];
@@ -40,15 +40,15 @@ export async function searchBySkill(
   return msg;
 }
 
-async function searchApi(text: string, env: Environment['experience']) {
-  console.log('text', text);
+async function searchApi(text: string, env: Environment["experience"]) {
+  console.log("text", text);
 
   return await connector(env).get<{ People?: any[] }>(`/search`, {
     params: { term: text }
   });
 }
 
-export function connector(env: Environment['experience']) {
+export function connector(env: Environment["experience"]) {
   return axios.create({
     baseURL: env.apiUrl,
     headers: { Authorization: env.authHeader }
@@ -74,12 +74,12 @@ function createThumbnailCard(session: Session, person: any) {
       CardAction.openUrl(
         session,
         `${process.env.EXP_URL}#/people/${person.PersonID}`,
-        'View Profile'
+        "View Profile"
       ),
       CardAction.openUrl(
         session,
         `${process.env.APP_URL}/resume/${person.PersonID}`,
-        'Download Resume'
+        "Download Resume"
       )
     ]);
 }
@@ -89,37 +89,37 @@ function showMoreCard(session: Session, text: string) {
     CardAction.openUrl(
       session,
       `${process.env.EXP_URL}#/search/${text}/All`,
-      'Show More'
+      "Show More"
     )
   ]);
 }
 
 export function DeltekLinkCard(session: Session) {
   return new ThumbnailCard(session)
-    .title('Deltek')
+    .title("Deltek")
     .text(
-      'DMI uses Deltek to track employee hours. Use the link below to access your timesheet'
+      "DMI uses Deltek to track employee hours. Use the link below to access your timesheet"
     )
     .buttons([
       CardAction.openUrl(
         session,
         `https://timesheets.dminc.com/DeltekTC/welcome.msv`,
-        'Deltek (External Link)'
+        "Deltek (External Link)"
       )
     ]);
 }
 
 export function AdpLinkCard(session: Session) {
   return new ThumbnailCard(session)
-    .title('ADP')
+    .title("ADP")
     .text(
-      'ADP is your resouce for pay stubs, health insurance enrollment, and tax documents.'
+      "ADP is your resouce for pay stubs, health insurance enrollment, and tax documents."
     )
     .buttons([
       CardAction.openUrl(
         session,
         `https://workforcenow.adp.com/portal/theme`,
-        'ADP (External Link)'
+        "ADP (External Link)"
       )
     ]);
 }

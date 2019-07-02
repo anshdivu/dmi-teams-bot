@@ -1,17 +1,13 @@
-import express from 'express';
-import { downloadResume } from '../bot/experience';
-import Environment from '../config/environment';
+import express from "express";
+import { downloadResume } from "../bot/experience";
+import Environment from "../config/environment";
 
-const env = new Environment();
-const router = express.Router();
+export default (env: Environment["experience"]) =>
+  express.Router().get("/:id", async (req, res, next) => {
+    const id = req.params.id;
 
-router.get('/:id', async (req, res, next) => {
-  const id = req.params.id;
+    const { data, headers } = await downloadResume(id, env);
 
-  const { data, headers } = await downloadResume(id, env.experience);
-
-  res.writeHead(200, headers);
-  data.on('error', next).pipe(res);
-});
-
-export default router;
+    res.writeHead(200, headers);
+    data.on("error", next).pipe(res);
+  });

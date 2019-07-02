@@ -1,8 +1,8 @@
 // @ts-ignore
-import LUISClient from 'luis-client';
-import { Response } from 'superagent';
-import superagent from 'superagent';
-import Environment from '../config/environment';
+import LUISClient from "luis-client";
+import { Response } from "superagent";
+import superagent from "superagent";
+import Environment from "../config/environment";
 
 const agent = superagent.agent();
 const env = new Environment();
@@ -19,15 +19,15 @@ const luis: {
     appId: env.luis.id,
     appKey: env.luis.key,
     authoringKey: env.luis.authoringKey,
-    verbose: 'false',
-    region: 'westus',
-    version: '2.0',
-    versionId: '0.1'
+    verbose: "false",
+    region: "westus",
+    version: "2.0",
+    versionId: "0.1"
   },
   agent
 );
 
-type Intent = 'Query_For_Skills' | 'None' | 'Find_Resume' | 'Timesheet' | 'ADP';
+type Intent = "Query_For_Skills" | "None" | "Find_Resume" | "Timesheet" | "ADP";
 interface LuisResponse {
   query: string;
   topScoringIntent: {

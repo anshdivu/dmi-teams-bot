@@ -21,7 +21,7 @@ export default class Environment {
 
   get app() {
     return {
-      inProd: this.config.NODE_ENV === 'production'
+      inProd: this.config.NODE_ENV === "production"
     };
   }
 

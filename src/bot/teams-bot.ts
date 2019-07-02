@@ -1,7 +1,7 @@
-import { UniversalBot } from 'botbuilder';
-import { TeamsChatConnector, TeamsMessage } from 'botbuilder-teams';
+import { UniversalBot } from "botbuilder";
+import { TeamsChatConnector, TeamsMessage } from "botbuilder-teams";
 // import { getMessage } from './message-builder';
-import Environment from '../config/environment';
+import Environment from "../config/environment";
 
 export function teamsBot(config: Environment) {
   const { connector } = initBotAndConnector(config);
