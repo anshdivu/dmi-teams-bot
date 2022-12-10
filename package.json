@@ -19,7 +19,7 @@
     "botbuilder": "^3.11.0",
     "botbuilder-teams": "^0.2.6",
     "debug": "~2.6.9",
-    "express": "~4.16.1",
+    "express": "~4.17.3",
     "luis-client": "^0.1.4",
     "morgan": "~1.9.1",
     "superagent": "^5.1.0"
